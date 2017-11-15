@@ -6,7 +6,9 @@ import com.example.common.validators.auth.user.Secured;
 import com.example.inventory.beans.EmployeeBean;
 import com.example.inventory.beans.InventoryBean;
 import com.example.inventory.controllers.request.LoadRequest;
+import com.example.inventory.controllers.response.DischargeResponse;
 import com.example.inventory.controllers.response.LoadResponse;
+import com.example.inventory.models.Discharge;
 import com.example.inventory.models.Employee;
 import com.example.inventory.models.Load;
 import com.example.users.beans.UserBean;
@@ -66,6 +68,26 @@ public class InventoryController {
             Employee employee = employeeBean.byId(x.getEmployee());
             loadResponse.setEmployee(employee);
             loadResponse.setLoad(x);
+            response.add(loadResponse);
+        }
+
+        return response;
+    }
+
+    @GET
+    @Path("/discharges")
+    @Secured
+    public List<DischargeResponse> allDischarges()
+    {
+        List<Discharge> loads = inventoryBean.allDischarges();
+        List<DischargeResponse> response = new ArrayList<>();
+
+        for(Discharge x: loads)
+        {
+            DischargeResponse loadResponse = new DischargeResponse();
+            Employee employee = employeeBean.byId(x.getEmployee());
+            loadResponse.setEmployee(employee);
+            loadResponse.setDischarge(x);
             response.add(loadResponse);
         }
 
