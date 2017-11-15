@@ -1,89 +1,106 @@
-<html>
+<!-- index.html -->
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app="scotchApp">
 <head>
-    <title>FruitExpo</title>
-
-    <!-- Materialize CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
-    <link rel="stylesheet" href="index.scss">
-
-    <!-- JavaScript for: jQuery, angular, materialize, and angular-materialize. All of which are needed. -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+    <script src="https://use.fontawesome.com/60422bb0f6.js"></script>
+    <link rel="stylesheet" href="index.scss">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
-
-    <!-- Your app -->
-    <script type="text/javascript" src="app.js"></script>
+    <script src="index.js"></script>
+    <script src="pages/home/homeController.js"></script>
+    <script src="pages/users/users.js"></script>
+    <script src="pages/registers/registers.js"></script>
+    <script src="pages/registers/load/newLoad.js"></script>
+    <script src="pages/registers/record/record.js"></script>
 </head>
 
+<!-- define angular controller -->
+<body ng-app="scotchApp">
 
+<!-- HEADER AND NAVBAR -->
+<header ng-show="allow" class="animated fadeIn" ng-controller="NavCtrl">
 
-
-<body ng-app="scotchApp" ng-controller="BodyController">
-<div class="section"></div>
-<main>
-    <center>
-        <div class="section"></div>
-
-        <h5 class="indigo-text">FruitExpo</h5>
-        <div class="section"></div>
-
-        <div class="container">
-            <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
-
-                <form class="col s12" method="post">
-                    <div class='row'>
-                        <div class='col s12'>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class='input-field col s12'>
-                            <input class='validate' type='email' name='email' id='email'  ng-model="user.email"/>
-                            <label for='email'>Ingresa tu email</label>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class='input-field col s12'>
-                            <input class='validate' type='password' name='password' id='password' ng-model="user.password"/>
-                            <label for='password'>Ingresa tu password</label>
-                        </div>
-                        <label style='float: right;'>
-                            <a class='pink-text' href='#!'><b>Olvide mi Password?</b></a>
-                        </label>
-                    </div>
-
-                    <br />
-                    <center>
-                        <div class='row'>
-                            <button ng-disabled ="user.email.length==0 || user.password==0" name='btn_login'
-                                    class='col s12 btn btn-large waves-effect indigo' ng-click="login()">
-                                {{actionButton}}
-                            </button>
-                        </div>
-                    </center>
-                </form>
-            </div>
+    <nav>
+        <div class="nav-wrapper" style="margin-left: 15px!important;">
+            <a href="" class="brand-logo" data-activates="nav-mobile2" data-sidenav="left" data-menuwidth="300" data-closeonclick="false">
+                <i class="material-icons">menu</i>FruitExpo</a>
+            <!--<a href="#" class="button-collapse brand-logo" >-->
+                <!--Show side-nav-->
+            <!--</a>-->
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <!--<li><a href=""          ng-click="loadHome()"   >Home</a></li>-->
+                <li><a href=""      ng-click="loadAbout()"   >Roles y Usuarios</a></li>
+                <li><a href="" ng-click="loadContact()"  >Registros</a></li>
+            </ul>
         </div>
-        <a href="#!" class="animated bounce" ng-click="setRegister()">{{actionLink}}</a>
-    </center>
+    </nav>
 
-    <div class="section"></div>
-    <div class="section"></div>
-</main>
+    <ul id="nav-mobile2" class="side-nav" style="width: 300px!important;">
+        <li>
+            <div class="user-view">
+            <!--<div class="background">-->
+                <!--<img src="https://blogs.office.com/wp-content/uploads/sites/2/2017/06/June-updates-to-Get-and-Transform.jpg">-->
+            <!--</div>-->
+                <div align="center">
+                    <br>
+                    <a href="#!user">
+                        <img class="circle" width="160px" height="160px" src="https://pbs.twimg.com/profile_images/913244978314280960/5xhoduFX_400x400.jpg">
+                    </a>
+                </div>
+        </div>
+        </li>
+        <li>
+            <a href="">Noe Canu</a>
+        </li>
+        <li>
+            <a href="">noeandres8m@gmail.com</a>
+        </li>
+        <li><a href=""><i class="material-icons">assignment_ind
+        </i>Roles y Usuarios</a></li>
+        <li><a href="">Configuracion</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="subheader">Opciones</a></li>
+        <li><a class="waves-effect" href="/">Cerrar sesion</a></li>
+    </ul>
 
-</body>
+    <!--<div class="navbar" >-->
+        <!--<ul class="nav navbar-nav">-->
+            <!--<li ng-class="navClass('home')"><a href=''    ng-click="loadHome()"   >Home</a></li>-->
+            <!--<li ng-class="navClass('users')"><a href=''   ng-click="loadAbout()"   >Roles</a></li>-->
+            <!--<li ng-class="navClass('registers')"><a href='' ng-click="loadContact()" >Registros</a></li>-->
+        <!--</ul>-->
+    <!--</div>-->
+
+</header>
+
+<style>
+    .navbar-nav{
+        flex-direction: inherit!important;
+    }
+</style>
+<!-- MAIN CONTENT AND INJECTED VIEWS -->
+<div id="">
 
 
 
+    <div ng-view>
 
+    </div>
+    <!-- angular templating -->
+    <!-- this is where content will be injected -->
+</div>
 
-</html>
-
-
+<style>
+.nav-mobile2{
+    width: 300px!important;
+}
+</style>
 

@@ -1,6 +1,7 @@
 package com.example.inventory.beans;
 
 
+import com.example.inventory.models.Load;
 import com.example.users.models.User;
 
 import javax.ejb.Local;
@@ -16,11 +17,16 @@ public class InventoryBean {
     @PersistenceContext
     EntityManager db;
 
-    public List<User> all()
+    public List<Load> allLoads()
     {
 
-        return db.createNamedQuery("All Users", User.class).getResultList();
+        return db.createNamedQuery("All Loads", Load.class).getResultList();
 
+    }
+
+    public void persistLoad(Load load)
+    {
+        db.persist(load);
     }
 
 

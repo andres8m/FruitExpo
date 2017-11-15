@@ -1,0 +1,67 @@
+<div class="" id="login">
+
+    <br>
+
+    <div class="row">
+
+        <div class="col m3">
+
+        </div>
+
+        <div class="col m6">
+            <div class="card-panel">
+
+                <h1 class="header center  text-lighten-2">Registro de Cargas</h1>
+
+                <div class="center">
+                    <h5 class="header light">Control historico de cajas usadas en carga</h5>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col m3">
+
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="container">
+            <table class="responsive-table">
+                <thead>
+                <tr>
+                    <th>Codigo de carga</th>
+                    <th>Empleado</th>
+                    <th>Camtidad</th>
+                    <th>Fecha</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat="x in allLoads">
+                    <td>{{x.load.id}}</td>
+                    <td>{{x.employee.name}}</td>
+                    <td>{{x.load.quantity}}</td>
+                    <td>{{x.load.date | date:"dd/MM/yyyy 'a las' h:mma"}}</td>
+                </tr>
+                <!--<tr>-->
+                    <!--<td>Alvin</td>-->
+                    <!--<td>Alan</td>-->
+                    <!--<td>Jellybean</td>-->
+                    <!--<td>$3.76</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>Alvin</td>-->
+                    <!--<td>Jonathan</td>-->
+                    <!--<td>Lollipop</td>-->
+                    <!--<td>$7.00</td>-->
+                <!--</tr>-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
