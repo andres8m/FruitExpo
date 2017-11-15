@@ -8,6 +8,7 @@ import com.example.inventory.beans.InventoryBean;
 import com.example.inventory.controllers.request.DischargeRequest;
 import com.example.inventory.controllers.request.LoadRequest;
 import com.example.inventory.controllers.request.ProductDischargeRequest;
+import com.example.inventory.controllers.response.DischargeDetailsResponse;
 import com.example.inventory.controllers.response.DischargeResponse;
 import com.example.inventory.controllers.response.LoadResponse;
 import com.example.inventory.models.*;
@@ -125,6 +126,27 @@ public class InventoryController {
     public List<Product> allProducts()
     {
         return inventoryBean.allProducts();
+    }
+
+    @GET
+    @Path("/discharge/details/{dischargeId}")
+    @Secured
+    public List<DischargeDetailsResponse> getDischargeDetails(@PathParam("dischargeId") long dischargeId)
+    {
+        List<ProductDischarge> productDischarges = inventoryBean.productDischargesByDischarge(dischargeId);
+        List<DischargeDetailsResponse> responses = new ArrayList<>();
+
+        for(ProductDischarge x: productDischarges)
+        {
+            Product product = inventoryBean.productById(x.getProduct());
+            DischargeDetailsResponse y = new DischargeDetailsResponse();
+            y.setProductDischarge(x);
+            y.setProduct(product);
+            responses.add(y);
+        }
+
+        return responses;
+
     }
 
 

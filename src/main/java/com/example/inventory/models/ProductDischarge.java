@@ -8,8 +8,9 @@ import javax.persistence.*;
 
 @NamedQueries
         ({
-                @NamedQuery(name = "All ProductDischarges", query = "SELECT productDischarge FROM ProductDischarge productDischarge")
-//                @NamedQuery(name = "ProductDischarge by employee", query = "SELECT productDischarge FROM ProductDischarge productDischarge WHERE productDischarge.employee =:employee"),
+                @NamedQuery(name = "All ProductDischarges", query = "SELECT productDischarge FROM ProductDischarge productDischarge"),
+                @NamedQuery(name = "ProductDischarge by discharge", query = "SELECT productDischarge FROM ProductDischarge productDischarge" +
+                        " WHERE productDischarge.discharge =:discharge"),
 //                @NamedQuery(name = "ProductDischarge by date", query = "SELECT productDischarge FROM ProductDischarge productDischarge WHERE productDischarge.date =:date")
 
         })

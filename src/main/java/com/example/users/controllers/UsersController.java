@@ -45,6 +45,7 @@ public class UsersController
 
     @GET
     @Secured
+    @Path("/all")
     public List<User> allUsers()
     {
         return userBean.all();

@@ -39,6 +39,20 @@ public class InventoryBean {
         return db.createNamedQuery("All Products", Product.class).getResultList();
     }
 
+    public List<ProductDischarge> productDischargesByDischarge(Long discharge)
+    {
+        return db.createNamedQuery("ProductDischarge by discharge", ProductDischarge.class).setParameter("discharge", discharge).getResultList();
+    }
+
+    public ProductDischarge productDischargebyId(Long id)
+    {
+        return db.find(ProductDischarge.class,id);
+    }
+
+    public Product productById(Long id)
+    {
+        return db.find(Product.class,id);
+    }
 
 
     public void persistLoad(Load load)
