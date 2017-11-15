@@ -3,6 +3,8 @@ package com.example.inventory.beans;
 
 import com.example.inventory.models.Discharge;
 import com.example.inventory.models.Load;
+import com.example.inventory.models.Product;
+import com.example.inventory.models.ProductDischarge;
 import com.example.users.models.User;
 
 import javax.ejb.Local;
@@ -32,11 +34,26 @@ public class InventoryBean {
 
     }
 
+    public List<Product> allProducts()
+    {
+        return db.createNamedQuery("All Products", Product.class).getResultList();
+    }
+
 
 
     public void persistLoad(Load load)
     {
         db.persist(load);
+    }
+
+    public void persistDischarge(Discharge discharge)
+    {
+        db.persist(discharge);
+    }
+
+    public void persistProductDischarge(ProductDischarge productDischarge)
+    {
+        db.persist(productDischarge);
     }
 
 

@@ -5,12 +5,12 @@ import com.example.common.validators.auth.user.AuthenticatedUser;
 import com.example.common.validators.auth.user.Secured;
 import com.example.inventory.beans.EmployeeBean;
 import com.example.inventory.beans.InventoryBean;
+import com.example.inventory.controllers.request.DischargeRequest;
 import com.example.inventory.controllers.request.LoadRequest;
+import com.example.inventory.controllers.request.ProductDischargeRequest;
 import com.example.inventory.controllers.response.DischargeResponse;
 import com.example.inventory.controllers.response.LoadResponse;
-import com.example.inventory.models.Discharge;
-import com.example.inventory.models.Employee;
-import com.example.inventory.models.Load;
+import com.example.inventory.models.*;
 import com.example.users.beans.UserBean;
 import com.example.users.models.User;
 
@@ -54,6 +54,31 @@ public class InventoryController {
         return load;
     }
 
+    @POST
+    @Path("/discharge")
+    @Secured
+    public Discharge createDischarge(@Valid DischargeRequest request)
+    {
+        Discharge discharge = new Discharge();
+        discharge.setDate(new Date());
+        discharge.setEmployee(request.getEmployee());
+        discharge.setTotal(request.getTotal());
+        inventoryBean.persistDischarge(discharge);
+
+        for(ProductDischargeRequest x: request.getProductDischarges())
+        {
+            ProductDischarge productDischarge = new ProductDischarge();
+            productDischarge.setDischarge(discharge.getId());
+            productDischarge.setProduct(x.getProduct());
+            productDischarge.setPrice(x.getPrice());
+            productDischarge.setQuantity(x.getQuantity());
+            inventoryBean.persistProductDischarge(productDischarge);
+        }
+
+
+        return discharge;
+    }
+
     @GET
     @Path("/loads")
     @Secured
@@ -92,6 +117,14 @@ public class InventoryController {
         }
 
         return response;
+    }
+
+    @GET
+    @Path("/products")
+    @Secured
+    public List<Product> allProducts()
+    {
+        return inventoryBean.allProducts();
     }
 
 
